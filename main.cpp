@@ -8,26 +8,25 @@ const char kWindowTitle[] = "LC1B_17_ナカガワ_リクト_タイトル_";
 // 1. 平行移動行列
 Matrix4x4 MakeTranslateMatrix(const Vector3& translate) {
 
-	Matrix4x4 translationMatrix;
-	translationMatrix.m[0][0] = 1.0f;
-	translationMatrix.m[1][1] = 1.0f;
-	translationMatrix.m[2][2] = 1.0f;
-	translationMatrix.m[3][3] = 1.0f;
-	translationMatrix.m[3][0] = translate.x;
-	translationMatrix.m[3][1] = translate.y;
-	translationMatrix.m[3][2] = translate.z;
-	return translationMatrix;
+	Matrix4x4 translateMatrix = { {
+		{1, 0, 0, 0},
+		{0, 1, 0, 0},
+		{0, 0, 1, 0},
+		{translate.x, translate.y, translate.z, 1}
+	} };
+
+	return translateMatrix;
 };
 
 // 2. 拡大縮小行列
 Matrix4x4 MakeScalseMatrix(const Vector3& scale) {
 
-	Matrix4x4 scaleMatrix;
-
-	scaleMatrix.m[0][0] = scale.x;
-	scaleMatrix.m[1][1] = scale.y;
-	scaleMatrix.m[2][2] = scale.z;
-	scaleMatrix.m[3][3] = 1.0f;
+	Matrix4x4 scaleMatrix = { {
+	   {scale.x, 0, 0, 0},
+	   {0, scale.y, 0, 0},
+	   {0, 0, scale.z, 0},
+	   {0, 0, 0, 1}
+   } };
 
 	return scaleMatrix;
 };
